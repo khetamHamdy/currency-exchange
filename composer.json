@@ -1,0 +1,20 @@
+{
+    "name": "khetamhamdy/currency-exchange",
+    "description": "A Laravel package for currency exchange and transaction management.",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "KhetamHamdy\\CurrencyExchange\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Khetam Hamdy",
+            "email": "hamdykhetam@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^8.0",
+        "laravel/framework": "^9.0"
+    }
+}
