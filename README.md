@@ -37,3 +37,52 @@ php artisan vendor:publish --provider="KhetamHamdy\CurrencyExchange\Providers\Cu
 
 This will create the configuration file at config/currency-exchange.php.
 
+### Usage
+# 1. Currency Management
+Display All Currencies:
+نسخ الكود
+use KhetamHamdy\CurrencyExchange\Services\CurrencyService;
+
+$currencies = $currencyService->getAllCurrencies();
+
+## Add a New Currency:
+نسخ الكود
+$currencyService->addCurrency([
+    'name' => 'US Dollar',
+    'code' => 'USD'
+]);
+## Update a Currency:
+نسخ الكو
+$currencyService->updateCurrency($id, [
+    'name' => 'Euro',
+    'code' => 'EUR'
+]);
+## Delete a Currency:
+نسخ الكود
+$currencyService->deleteCurrency($id);
+
+
+
+### 2. Transaction Management
+
+## Display All Transactions:
+نسخ الكود
+use KhetamHamdy\CurrencyExchange\Services\ExchangeTransactionService;
+$transactions = $exchangeService->listTransactions();
+## Add a New Transaction:
+نسخ الكود
+$exchangeService->createTransaction([
+    'from' => 1, // Original currency ID
+    'to' => 2,   // Target currency ID
+    'rate' => 1.2,
+    'date' => now()
+]);
+## Update a Transaction:
+نسخ الكود
+$exchangeService->updateTransaction($id, [
+    'from' => 1,
+    'to' => 2,
+    'rate' => 1.3,
+    'date' => now()
+]);
+
