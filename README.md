@@ -20,7 +20,7 @@ This package is dedicated to my late father, and I hope it helps improve the sof
 
 Install the package in your Laravel application by running the following command in your project directory:
 
-composer require khetamamdy/currency-exchange
+composer require khetamhamdy/currency-exchange
 
 ## Add the Service Provider
 
