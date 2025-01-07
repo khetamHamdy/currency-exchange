@@ -6,7 +6,6 @@ The **Currency Exchange** package is an open-source PHP library for Laravel that
 
 This package is dedicated to my late father, and I hope it helps improve the software development experience.
 
-
 ## Features
 
 - Manage **currencies**: Add, update, delete, and view currencies.
@@ -20,69 +19,106 @@ This package is dedicated to my late father, and I hope it helps improve the sof
 
 Install the package in your Laravel application by running the following command in your project directory:
 
+```bash
 composer require khetamhamdy/currency-exchange
+```
 
-## Add the Service Provider
+### 2. Add the Service Provider (if needed)
 
-After installation, add the service provider in the config/app.php file under the providers array:
+If you're not using Laravel's package auto-discovery feature, add the service provider manually in the `config/app.php` file under the `providers` array:
+
+```php
 'providers' => [
     // Other providers...
     KhetamHamdy\CurrencyExchange\Providers\CurrencyExchangeServiceProvider::class,
 ],
+```
 
-## Publish Configuration (Optional)
-To customize the package settings, you can publish the configuration file with the following command:
+### 3. Run Migrations
 
-php artisan vendor:publish --provider="KhetamHamdy\CurrencyExchange\Providers\CurrencyExchangeServiceProvider" --tag="config"
+To create the necessary database tables, execute the following command:
 
-This will create the configuration file at config/currency-exchange.php.
+```bash
+php artisan migrate
+```
 
-### Usage
-# 1. Currency Management
-Display All Currencies:
-نسخ الكود
+This will run the migrations provided by the package to set up the required database schema.
+
+## Usage
+
+### 1. Currency Management
+
+#### Display All Currencies:
+
+```php
 use KhetamHamdy\CurrencyExchange\Services\CurrencyService;
 
+$currencyService = app('currency.service');
 $currencies = $currencyService->getAllCurrencies();
+```
 
-## Add a New Currency:
-نسخ الكود
+#### Add a New Currency:
+
+```php
 $currencyService->addCurrency([
     'name' => 'US Dollar',
-    'code' => 'USD'
+    'code' => 'USD',
 ]);
-## Update a Currency:
-نسخ الكو
+```
+
+#### Update a Currency:
+
+```php
 $currencyService->updateCurrency($id, [
     'name' => 'Euro',
-    'code' => 'EUR'
+    'code' => 'EUR',
 ]);
-## Delete a Currency:
-نسخ الكود
+```
+
+#### Delete a Currency:
+
+```php
 $currencyService->deleteCurrency($id);
-
-
+```
 
 ### 2. Transaction Management
 
-## Display All Transactions:
-نسخ الكود
+#### Display All Transactions:
+
+```php
 use KhetamHamdy\CurrencyExchange\Services\ExchangeTransactionService;
+
+$exchangeService = app('exchange.service');
 $transactions = $exchangeService->listTransactions();
-## Add a New Transaction:
-نسخ الكود
+```
+
+#### Add a New Transaction:
+
+```php
 $exchangeService->createTransaction([
     'from' => 1, // Original currency ID
     'to' => 2,   // Target currency ID
     'rate' => 1.2,
-    'date' => now()
+    'date' => now(),
 ]);
-## Update a Transaction:
-نسخ الكود
+```
+
+#### Update a Transaction:
+
+```php
 $exchangeService->updateTransaction($id, [
     'from' => 1,
     'to' => 2,
     'rate' => 1.3,
-    'date' => now()
+    'date' => now(),
 ]);
+```
 
+## Notes
+
+- Ensure your application meets the package requirements, including Laravel version 9.0 or higher.
+- Remember to run `php artisan migrate` after installing the package to set up the database tables.
+
+## License
+
+This package is open-sourced software licensed under the [MIT license](LICENSE).
